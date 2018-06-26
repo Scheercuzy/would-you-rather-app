@@ -3,10 +3,16 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import LoginDialog from './LoginDialog'
+import { handleInitialData } from './store/actions/shared'
 
 import Navbar from './layouts/Navbar'
 
 class App extends Component {
+
+  componentDidMount() {
+    this.props.dispatch(handleInitialData())
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -20,9 +26,10 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ authUser }) {
+function mapStateToProps({ authUser, users }) {
   return {
-      authUser
+      authUser,
+      users
   }
 }
 
