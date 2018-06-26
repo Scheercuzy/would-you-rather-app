@@ -13,11 +13,18 @@ class LoginDialog extends Component {
         close: false
     }
 
-    handleClose = (event) => {
+    handleDialogClose = (event) => {
         this.setState({
             close: true
         })
     }
+
+    handleUserSelect = value => {
+        console.log(value)
+        this.setState({
+            close: true
+        })
+      }
 
     render() {
         if (this.state.close === true) {
@@ -26,14 +33,11 @@ class LoginDialog extends Component {
 
         return (
             <Fragment>
-                <Dialog open onClose={this.handleClose}>
+                <Dialog open onClose={this.handleDialogClose}>
                     <DialogTitle>Please select a user</DialogTitle>
                     <div>
                     <List>
-                        <ListItem button>
-                            <ListItemText primary="User1" />
-                        </ListItem>
-                        <ListItem button>
+                        <ListItem button onClick={() => this.handleUserSelect("id")} key="id">
                             <ListItemText primary="User1" />
                         </ListItem>
                     </List>
