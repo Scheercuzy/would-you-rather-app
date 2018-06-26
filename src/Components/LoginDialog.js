@@ -75,7 +75,7 @@ class LoginDialog extends Component {
     }
 
     render() {
-        const { users } = this.props
+        const { users , authUser } = this.props
 
         if (this.state.close === true) {
             return <Redirect to='/' />
@@ -84,7 +84,7 @@ class LoginDialog extends Component {
         return (
             <Fragment>
                 <Dialog open onClose={this.handleDialogClose}>
-                    <DialogTitle>Please select a user</DialogTitle>
+                    <DialogTitle>{!authUser ? "Please select a user" : "Change user or logout"}</DialogTitle>
                     <div>
                     <List>
                         {this.mapUser(users)}
