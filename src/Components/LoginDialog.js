@@ -49,8 +49,6 @@ class LoginDialog extends Component {
     
 
     mapUsers (users) {
-        console.log("login props", this.props)
-        console.log("from", this.props.location.from)
         const { authUser } = this.props
 
         if (users === undefined || users.length === 0) {
@@ -80,9 +78,10 @@ class LoginDialog extends Component {
     render() {
         const { users , authUser } = this.props
         const from = this.props.location.from
+        console.log(from)
 
         if (this.state.close === true) {
-            if (from !== undefined) {
+            if (from !== undefined && authUser) {
                 return <Redirect to={from} />
             }
             return <Redirect to='/' />
