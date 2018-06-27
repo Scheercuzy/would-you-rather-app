@@ -60,12 +60,12 @@ class Nav extends Component {
                         disableBackdropTransition={!iOS} 
                         disableDiscovery={iOS}
                     >
-                        <DrawerLayout classes={classes} />
+                        <DrawerLayout classes={classes} authUser={authUser} />
                     </SwipeableDrawer>
                 </Hidden>
                 <Hidden smDown>
                     <Drawer variant="permanent" open classes={{paper: classes.drawerPaper}}>
-                        <DrawerLayout classes={classes}/>
+                        <DrawerLayout classes={classes} authUser={authUser} />
                     </Drawer>
                 </Hidden>
                 <main className={classes.content}>

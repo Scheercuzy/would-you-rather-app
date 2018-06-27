@@ -6,7 +6,7 @@ import Divider from '@material-ui/core/Divider'
 import Typography from '@material-ui/core/Typography'
 import Hidden from '@material-ui/core/Hidden'
 
-const DrawerLayout = ({classes}) => (
+const DrawerLayout = ({classes, authUser}) => (
     <div>
         <Hidden smDown>
         <div className={classes.toolbar} />
@@ -19,6 +19,7 @@ const DrawerLayout = ({classes}) => (
         <MenuList>
             <MenuItem><Typography>Item 1</Typography></MenuItem>
         </MenuList>
+        {authUser && <div><Typography align='center'>Logged in as {authUser}</Typography></div>}
       </div>
 )
 

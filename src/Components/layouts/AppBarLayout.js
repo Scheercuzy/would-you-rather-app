@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 
@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button'
 import MenuIcon from '@material-ui/icons/Menu'
 import IconButton from '@material-ui/core/IconButton'
 import Avatar from '@material-ui/core/Avatar'
+import Hidden from '@material-ui/core/Hidden'
 
 const styles = theme => ({
     appBar: {
@@ -49,7 +50,13 @@ function AppBarLayout(props) {
                 </Typography>
                 {!authUser 
                     ? <Button color="inherit" component={Link} to="/login">Login</Button>
-                    : <Avatar alt={authUser} src={handleUserAvatar(authUser, users)} component={Link} to="/login"/>
+                    :
+                    <Fragment>
+                        <Avatar alt={authUser} src={handleUserAvatar(authUser, users)} component={Link} to="/login"/>
+                        <Hidden smDown>
+                        <Button color="inherit" component={Link} to="/login">{authUser}</Button>
+                        </Hidden>
+                    </Fragment>
                 }
             </Toolbar>
         </AppBar>
