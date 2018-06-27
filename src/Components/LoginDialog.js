@@ -21,6 +21,7 @@ const styles = {}
 
 
 class LoginDialog extends Component {
+
     state = {
         close: false
     }
@@ -47,7 +48,9 @@ class LoginDialog extends Component {
 
     
 
-    mapUser (users) {
+    mapUsers (users) {
+        console.log("login props", this.props)
+        console.log("from", this.props.location.from)
         const { authUser } = this.props
 
         if (users === undefined || users.length === 0) {
@@ -76,8 +79,12 @@ class LoginDialog extends Component {
 
     render() {
         const { users , authUser } = this.props
+        const from = this.props.location.from
 
         if (this.state.close === true) {
+            if (from !== undefined) {
+                return <Redirect to={from} />
+            }
             return <Redirect to='/' />
           }
 
@@ -87,7 +94,7 @@ class LoginDialog extends Component {
                     <DialogTitle>{!authUser ? "Please select a user" : "Change user or logout"}</DialogTitle>
                     <div>
                     <List>
-                        {this.mapUser(users)}
+                        {this.mapUsers(users)}
                     </List>
                     </div>
                 </Dialog>
