@@ -13,7 +13,6 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import Avatar from '@material-ui/core/Avatar'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar'
-import PersonIcon from '@material-ui/icons/Person'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 
@@ -45,24 +44,26 @@ class LoginDialog extends Component {
             return Object.assign(prevState, {close: true})
         })
     }
-
+    
+    handleUserAvatar(user) {
+        const { users } = this.props
+        return users[user]['avatarURL']
+    }
     
 
-    mapUsers (users) {
+    mapUsersList (userslist) {
         const { authUser } = this.props
 
-        if (users === undefined || users.length === 0) {
+        if (userslist === undefined || userslist.length === 0) {
             return <div style={{margin: 'auto', position: 'relative', width: '20%'}}><CircularProgress /></div>
         }
 
         return (
             <Fragment>
-            {users.map(((user) =>
+            {userslist.map(((user) =>
                 <ListItem button onClick={() => this.handleUserSelect({user})} key={user}>
                 <ListItemAvatar>
-                    <Avatar>
-                        <PersonIcon />
-                    </Avatar>
+                    <Avatar alt={user} src={this.handleUserAvatar(user)}/>
                 </ListItemAvatar>
                     <ListItemText primary={user} />
                 </ListItem>
@@ -76,7 +77,8 @@ class LoginDialog extends Component {
     }
 
     render() {
-        const { users , authUser } = this.props
+        const { users, authUser } = this.props
+        const userslist = Object.keys(users)
         const from = this.props.location.from
         console.log(from)
 
@@ -93,7 +95,7 @@ class LoginDialog extends Component {
                     <DialogTitle>{!authUser ? "Please select a user" : "Change user or logout"}</DialogTitle>
                     <div>
                     <List>
-                        {this.mapUsers(users)}
+                        {this.mapUsersList(userslist)}
                     </List>
                     </div>
                 </Dialog>
@@ -105,7 +107,7 @@ class LoginDialog extends Component {
 function mapStateToProps({ authUser, users }) {
     return {
         authUser,
-        users: Object.keys(users)
+        users
     }
   }
 

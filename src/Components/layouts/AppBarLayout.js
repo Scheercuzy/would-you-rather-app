@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import MenuIcon from '@material-ui/icons/Menu'
 import IconButton from '@material-ui/core/IconButton'
+import Avatar from '@material-ui/core/Avatar'
 
 const styles = theme => ({
     appBar: {
@@ -27,7 +28,11 @@ const styles = theme => ({
 
 
 function AppBarLayout(props) {
-    const { classes, handleDrawerToggle, authUser } = props
+    const { classes, handleDrawerToggle, authUser, users } = props
+
+    function handleUserAvatar(authUser, users) {
+        return users[authUser]['avatarURL']
+    }
 
     return (
         <AppBar position="static" className={classes.appBar} >
@@ -42,9 +47,10 @@ function AppBarLayout(props) {
                 <Typography variant="title" color="inherit" className={classes.title} component={Link} to="/">
                     Would you Rather App
                 </Typography>
-                {authUser 
-                    ? <Button color="inherit" component={Link} to="/login">{authUser}</Button>
-                    : <Button color="inherit" component={Link} to="/login">Login</Button>}
+                {!authUser 
+                    ? <Button color="inherit" component={Link} to="/login">Login</Button>
+                    : <Avatar alt={authUser} src={handleUserAvatar(authUser, users)} component={Link} to="/login"/>
+                }
             </Toolbar>
         </AppBar>
     )

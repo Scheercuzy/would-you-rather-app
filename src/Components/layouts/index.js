@@ -47,18 +47,19 @@ class Nav extends Component {
       }
 
     render() {
-        const { classes, authUser, children } = this.props
+        const { classes, authUser, users, children } = this.props
         return (
             <div className={classes.root}>
-                <AppBarLayout handleDrawerToggle={this.handleDrawerToggle} authUser={authUser} />
+                <AppBarLayout handleDrawerToggle={this.handleDrawerToggle} authUser={authUser} users={users} />
                 <Hidden mdUp>
                     <SwipeableDrawer 
-                    open={this.state.drawerOpen} 
-                    classes={{paper: classes.drawerPaper}} 
-                    onClose={this.handleDrawerToggle} 
-                    onOpen={this.handleDrawerToggle}
-                    disableBackdropTransition={!iOS} 
-                    disableDiscovery={iOS}>
+                        open={this.state.drawerOpen} 
+                        classes={{paper: classes.drawerPaper}} 
+                        onClose={this.handleDrawerToggle} 
+                        onOpen={this.handleDrawerToggle}
+                        disableBackdropTransition={!iOS} 
+                        disableDiscovery={iOS}
+                    >
                         <DrawerLayout classes={classes} />
                     </SwipeableDrawer>
                 </Hidden>
@@ -76,9 +77,10 @@ class Nav extends Component {
     }
 }
 
-function mapStateToProps({ authUser }) {
+function mapStateToProps({ authUser, users }) {
     return {
-        authUser
+        authUser,
+        users
     }
 }
 
