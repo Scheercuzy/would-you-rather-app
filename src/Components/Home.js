@@ -2,12 +2,15 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import compose from 'recompose/compose'
+import { Link } from 'react-router-dom'
 
 import Paper from '@material-ui/core/Paper'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import MenuList from '@material-ui/core/MenuList'
 import MenuItem from '@material-ui/core/MenuItem'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 
 const styles = theme => ({
@@ -24,7 +27,6 @@ const TabContainerS = withStyles(styles)(TabContainer)
 
 function TabContainer(props) {
     const { displayquestions, classes } = props
-    console.log('displayquestions', displayquestions)
 
     const mergeOptions = (question) => (
             "Would you rather " + 
@@ -34,17 +36,32 @@ function TabContainer(props) {
             "?"
         )
 
-    return (
-        <MenuList>
-            {displayquestions.map((question) => 
-                <MenuItem key={question.id} className={classes.menuitem}>
-                    <ListItemText
-                    primary={mergeOptions(question)} 
-                    secondary={"author " + question.author} />
-                </MenuItem>
-            )}
-        </MenuList>
-    )
+    if (displayquestions.length === 0) {
+        return (
+            <List>
+                <ListItem>
+                    <ListItemText primary="Concrats! You've answered all the questions!" />
+                </ListItem>
+            </List>
+        )
+
+    } else {
+        return (
+            <MenuList>
+                {displayquestions.map((question) => 
+                    <MenuItem 
+                    key={question.id} 
+                    className={classes.menuitem}
+                    component={Link}
+                    to={'/question/' + question.id}>
+                        <ListItemText
+                        primary={mergeOptions(question)} 
+                        secondary={"author " + question.author} />
+                    </MenuItem>
+                )}
+            </MenuList>
+        )
+    }
 }
 
 

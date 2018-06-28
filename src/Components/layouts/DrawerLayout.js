@@ -8,7 +8,11 @@ import Typography from '@material-ui/core/Typography'
 import Hidden from '@material-ui/core/Hidden'
 
 const styles = theme => ({
-    toolbar: theme.mixins.toolbar
+    toolbar: theme.mixins.toolbar,
+    createdBy: {
+        position:'absolute', 
+        bottom:'15px'
+    }
 })
 
 function DrawerLayout (props) {
@@ -30,7 +34,11 @@ function DrawerLayout (props) {
                     <Typography>Create Poll</Typography>
                 </MenuItem>
             </MenuList>
-            {authUser && <div><Typography align='center'>Logged in as {authUser}</Typography></div>}
+            {authUser && <div><Typography variant='caption' align='center'>Logged in as {authUser}</Typography></div>}
+            <br/>
+            <Typography variant='caption' align='center' className={classes.createdBy}>
+                Would You Rather ©2018 Created by Maxence Scheercousse
+            </Typography>
         </div>
     )
 }
