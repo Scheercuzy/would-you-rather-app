@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import { withStyles } from '@material-ui/core/styles'
+import compose from 'recompose/compose'
 
 import Paper from '@material-ui/core/Paper'
 import Tabs from '@material-ui/core/Tabs'
@@ -8,9 +10,20 @@ import MenuList from '@material-ui/core/MenuList'
 import MenuItem from '@material-ui/core/MenuItem'
 import ListItemText from '@material-ui/core/ListItemText'
 
+const styles = theme => ({
+    menuitem : {
+        whiteSpace: 'normal',
+        height: 'auto'
+    },
+    answerdisplay : {
+        marginTop: '20px'
+    }
+})
+
+const TabContainerS = withStyles(styles)(TabContainer)
 
 function TabContainer(props) {
-    const { displayquestions } = props
+    const { displayquestions, classes } = props
     console.log('displayquestions', displayquestions)
 
     const mergeOptions = (question) => (
@@ -24,8 +37,8 @@ function TabContainer(props) {
     return (
         <MenuList>
             {displayquestions.map((question) => 
-                <MenuItem key={question.id}>
-                    <ListItemText 
+                <MenuItem key={question.id} className={classes.menuitem}>
+                    <ListItemText
                     primary={mergeOptions(question)} 
                     secondary={"author " + question.author} />
                 </MenuItem>
@@ -50,12 +63,12 @@ class Home extends Component {
 
     render() {
         const { tabValue } = this.state 
-        const { unanswered, answered } = this.props
+        const { unanswered, answered, classes } = this.props
 
         return (
             <Fragment>
                 <Paper>
-                    <Tabs 
+                    <Tabs
                     centered fullWidth
                     value={tabValue} 
                     onChange={this.handleTabChange} 
@@ -64,9 +77,9 @@ class Home extends Component {
                         <Tab label="Answered" />
                     </Tabs>
                 </Paper>
-                <Paper style={{marginTop: '20px' }}>
-                {tabValue === 0 && <TabContainer displayquestions={unanswered} />}
-                {tabValue === 1 && <TabContainer displayquestions={answered} />}
+                <Paper className={classes.answerdisplay}>
+                {tabValue === 0 && <TabContainerS displayquestions={unanswered} />}
+                {tabValue === 1 && <TabContainerS displayquestions={answered} />}
                 </Paper>
             </Fragment>
         )
@@ -86,4 +99,7 @@ function mapStateToProps({ authUser, users, questions }) {
     }
   }
 
-export default connect(mapStateToProps)(Home)
+export default compose(
+    connect(mapStateToProps),
+    withStyles(styles)
+)(Home)

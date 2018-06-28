@@ -31,6 +31,7 @@ const styles = theme => ({
     toolbar: theme.mixins.toolbar,
     content: {
         flexGrow: 1,
+        maxWidth: '100%'
     }
 })
 
