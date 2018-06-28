@@ -11,7 +11,7 @@ const styles = theme => ({
     toolbar: theme.mixins.toolbar
 })
 
-const DrawerLayout = ({classes, authUser}) => (
+const DrawerLayout = ({classes, authUser }) => (
     <div>
         <Hidden smDown>
         <div className={classes.toolbar} />
@@ -24,8 +24,7 @@ const DrawerLayout = ({classes, authUser}) => (
                 <Typography>LeaderBoard</Typography>
             </MenuItem>
             <MenuItem component={Link} to='/createpoll'>
-                <Typography>Create Poll
-                </Typography>
+                <Typography>Create Poll</Typography>
             </MenuItem>
         </MenuList>
         {authUser && <div><Typography align='center'>Logged in as {authUser}</Typography></div>}

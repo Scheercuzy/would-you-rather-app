@@ -41,8 +41,22 @@ class Nav extends Component {
     }
 
     handleDrawerToggle = () => {
-        this.setState(state => ({ drawerOpen: !state.drawerOpen }));
+        this.setState(state => ({ drawerOpen: !state.drawerOpen }))
+    }
+
+    handleDrawerClose = () => {
+        this.setState(() => ({ drawerOpen: false }))
+    }
+
+    componentWillMount() {
+        this.unlisten = this.props.history.listen((location, action) => {
+          this.handleDrawerClose()
+        });
       }
+      componentWillUnmount() {
+          this.unlisten()
+      }
+
 
     render() {
         const { classes, authUser, users, children } = this.props
@@ -58,7 +72,7 @@ class Nav extends Component {
                     <Drawer 
                         open={this.state.drawerOpen} 
                         classes={{paper: classes.drawerPaper}} 
-                        onClose={this.handleDrawerToggle} 
+                        onClose={this.handleDrawerToggle}
                     >
                         <DrawerLayout authUser={authUser} />
                     </Drawer>
