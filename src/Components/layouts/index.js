@@ -49,17 +49,19 @@ class Nav extends Component {
     }
 
     componentWillMount() {
-        this.unlisten = this.props.history.listen((location, action) => {
+        this.unlistenRouterHistory = this.props.history.listen((location, action) => {
           this.handleDrawerClose()
-        });
-      }
-      componentWillUnmount() {
-          this.unlisten()
-      }
+        })
+    }
+
+    componentWillUnmount() {
+        this.unlistenRouterHistory()
+    }
 
 
     render() {
         const { classes, authUser, users, children } = this.props
+        const { pathname } = this.props.history.location
 
         // if (this.props.location.pathname === '/login') {
         //     return <div>{children}</div>
@@ -74,12 +76,12 @@ class Nav extends Component {
                         classes={{paper: classes.drawerPaper}} 
                         onClose={this.handleDrawerToggle}
                     >
-                        <DrawerLayout authUser={authUser} />
+                        <DrawerLayout authUser={authUser} pathname={pathname} />
                     </Drawer>
                 </Hidden>
                 <Hidden smDown>
                     <Drawer variant="permanent" open classes={{paper: classes.drawerPaper}}>
-                        <DrawerLayout authUser={authUser} />
+                        <DrawerLayout authUser={authUser} pathname={pathname} />
                     </Drawer>
                 </Hidden>
                 <main className={classes.content}>
