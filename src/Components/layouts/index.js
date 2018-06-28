@@ -8,12 +8,10 @@ import DrawerLayout from './DrawerLayout'
 import AppBarLayout from './AppBarLayout'
 
 import Drawer from '@material-ui/core/Drawer'
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
 import Hidden from '@material-ui/core/Hidden'
 
 
 const drawerWidth = 240
-const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent)
 
 const styles = theme => ({
     root: {
@@ -48,24 +46,26 @@ class Nav extends Component {
 
     render() {
         const { classes, authUser, users, children } = this.props
+
+        // if (this.props.location.pathname === '/login') {
+        //     return <div>{children}</div>
+        // }
+
         return (
             <div className={classes.root}>
                 <AppBarLayout handleDrawerToggle={this.handleDrawerToggle} authUser={authUser} users={users} />
                 <Hidden mdUp>
-                    <SwipeableDrawer 
+                    <Drawer 
                         open={this.state.drawerOpen} 
                         classes={{paper: classes.drawerPaper}} 
                         onClose={this.handleDrawerToggle} 
-                        onOpen={this.handleDrawerToggle}
-                        disableBackdropTransition={!iOS} 
-                        disableDiscovery={iOS}
                     >
-                        <DrawerLayout classes={classes} authUser={authUser} />
-                    </SwipeableDrawer>
+                        <DrawerLayout authUser={authUser} />
+                    </Drawer>
                 </Hidden>
                 <Hidden smDown>
                     <Drawer variant="permanent" open classes={{paper: classes.drawerPaper}}>
-                        <DrawerLayout classes={classes} authUser={authUser} />
+                        <DrawerLayout authUser={authUser} />
                     </Drawer>
                 </Hidden>
                 <main className={classes.content}>

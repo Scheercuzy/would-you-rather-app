@@ -16,7 +16,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 
-const styles = {}
+const styles = theme => ({})
 
 
 class LoginDialog extends Component {
@@ -92,7 +92,7 @@ class LoginDialog extends Component {
         return (
             <Fragment>
                 <Dialog open onClose={this.handleDialogClose}>
-                    <DialogTitle>{!authUser ? "Please select a user" : "Change user or logout"}</DialogTitle>
+                    <DialogTitle>{!authUser ? "Please select a User" : "Change User or Logout"}</DialogTitle>
                     <div>
                     <List>
                         {this.mapUsersList(userslist)}
