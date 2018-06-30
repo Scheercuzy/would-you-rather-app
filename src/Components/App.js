@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import compose from 'recompose/compose'
 import { withStyles } from '@material-ui/core/styles'
 import { connect } from 'react-redux'
@@ -40,11 +40,14 @@ class App extends Component {
         <Layout>
           <CssBaseline />
           <Paper className={classes.root} >
-          <Route path="/login" component={LoginDialog} />
-          <PrivateRoute exact path="/" authUser={authUser} component={Home} />
-          <PrivateRoute path="/leaderboard" authUser={authUser} component={LeaderBoard} />
-          <PrivateRoute path="/createpoll" authUser={authUser} component={CreatePoll} />
-          <PrivateRoute path="/question/:q" authUser={authUser} component={Question} />
+          <Switch>
+            <Route path="/login" component={LoginDialog} />
+            <PrivateRoute exact path="/" authUser={authUser} component={Home} />
+            <PrivateRoute path="/leaderboard" authUser={authUser} component={LeaderBoard} />
+            <PrivateRoute path="/createpoll" authUser={authUser} component={CreatePoll} />
+            <PrivateRoute path="/question/:q" authUser={authUser} component={Question} />
+            <Route render={() => <h1>404</h1>}/>
+          </Switch>
           </Paper>
         </Layout>
       </BrowserRouter>
