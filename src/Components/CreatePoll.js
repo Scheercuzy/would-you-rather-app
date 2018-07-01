@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class CreatePoll extends Component {
-    state = {  }
-    render() {
-        return (
-            <h1>CreatePoll</h1>   
-        )
-    }
+  state = {};
+  render() {
+    return <h1>CreatePoll</h1>;
+  }
 }
 
-export default CreatePoll
+export default CreatePoll;

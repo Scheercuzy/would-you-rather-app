@@ -1,46 +1,64 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { withStyles } from '@material-ui/core/styles'
+import React from "react";
+import { Link } from "react-router-dom";
+import { withStyles } from "@material-ui/core/styles";
 
-import MenuList from '@material-ui/core/MenuList'
-import MenuItem from '@material-ui/core/MenuItem'
-import Typography from '@material-ui/core/Typography'
-import Hidden from '@material-ui/core/Hidden'
+import MenuList from "@material-ui/core/MenuList";
+import MenuItem from "@material-ui/core/MenuItem";
+import Typography from "@material-ui/core/Typography";
+import Hidden from "@material-ui/core/Hidden";
 
 const styles = theme => ({
-    toolbar: theme.mixins.toolbar,
-    createdBy: {
-        position:'absolute', 
-        bottom:'15px'
-    }
-})
+  toolbar: theme.mixins.toolbar,
+  createdBy: {
+    position: "absolute",
+    bottom: "15px"
+  }
+});
 
-function DrawerLayout (props) {
-    const { classes, authUser, pathname } = props
+function DrawerLayout(props) {
+  const { classes, authUser, pathname } = props;
 
-    return (
+  return (
+    <div>
+      <Hidden smDown>
+        <div className={classes.toolbar} />
+      </Hidden>
+      <MenuList>
+        <MenuItem selected={pathname === "/"} component={Link} to="/">
+          <Typography>Home</Typography>
+        </MenuItem>
+        <MenuItem
+          selected={pathname === "/leaderboard"}
+          component={Link}
+          to="/leaderboard"
+        >
+          <Typography>LeaderBoard</Typography>
+        </MenuItem>
+        <MenuItem
+          selected={pathname === "/createpoll"}
+          component={Link}
+          to="/createpoll"
+        >
+          <Typography>Create Poll</Typography>
+        </MenuItem>
+      </MenuList>
+      {authUser && (
         <div>
-            <Hidden smDown>
-            <div className={classes.toolbar} />
-            </Hidden>
-            <MenuList>
-                <MenuItem selected={pathname === '/'} component={Link} to='/'>
-                    <Typography>Home</Typography>
-                </MenuItem>
-                <MenuItem selected={pathname === '/leaderboard'} component={Link} to='/leaderboard'>
-                    <Typography>LeaderBoard</Typography>
-                </MenuItem>
-                <MenuItem selected={pathname === '/createpoll'} component={Link} to='/createpoll'>
-                    <Typography>Create Poll</Typography>
-                </MenuItem>
-            </MenuList>
-            {authUser && <div><Typography variant='caption' align='center'>Logged in as {authUser}</Typography></div>}
-            <br/>
-            <Typography variant='caption' align='center' className={classes.createdBy}>
-                Would You Rather ©2018 Created by Maxence Scheercousse
-            </Typography>
+          <Typography variant="caption" align="center">
+            Logged in as {authUser}
+          </Typography>
         </div>
-    )
+      )}
+      <br />
+      <Typography
+        variant="caption"
+        align="center"
+        className={classes.createdBy}
+      >
+        Would You Rather ©2018 Created by Maxence Scheercousse
+      </Typography>
+    </div>
+  );
 }
 
-export default withStyles(styles)(DrawerLayout)
+export default withStyles(styles)(DrawerLayout);

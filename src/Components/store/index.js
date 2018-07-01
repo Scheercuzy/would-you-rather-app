@@ -1,7 +1,7 @@
-import { createStore } from 'redux'
-import reducers from './reducers'
-import middleware from './middleware'
+import { createStore } from "redux";
+import reducers from "./reducers";
+import middleware from "./middleware";
 
-const store = createStore(reducers, middleware)
+const store = createStore(reducers, middleware);
 
-export { store }
+export { store };
