@@ -30,7 +30,6 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar,
   content: {
     maxWidth: "100%",
-    height: "100vh",
     width: "100vw"
   }
 });
