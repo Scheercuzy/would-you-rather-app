@@ -37,7 +37,7 @@ class App extends Component {
       <BrowserRouter>
         <Layout>
           <CssBaseline />
-          <Paper className={classes.root}>
+          <Paper className={classes.root} style={{backgroundColor: '#F2F2F2'}}>
             <Switch>
               <Route path="/login" component={LoginDialog} />
               <PrivateRoute

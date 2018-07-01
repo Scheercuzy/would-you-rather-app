@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import compose from "recompose/compose";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -29,8 +29,9 @@ const styles = theme => ({
   },
   toolbar: theme.mixins.toolbar,
   content: {
-    flexGrow: 1,
-    maxWidth: "100%"
+    maxWidth: "100%",
+    height: "100vh",
+    width: "100vw"
   }
 });
 
@@ -68,35 +69,37 @@ class Nav extends Component {
     // }
 
     return (
-      <div className={classes.root}>
-        <AppBarLayout
-          handleDrawerToggle={this.handleDrawerToggle}
-          authUser={authUser}
-          users={users}
-        />
-        <Hidden mdUp>
-          <Drawer
-            open={this.state.drawerOpen}
-            classes={{ paper: classes.drawerPaper }}
-            onClose={this.handleDrawerToggle}
-          >
-            <DrawerLayout authUser={authUser} pathname={pathname} />
-          </Drawer>
-        </Hidden>
-        <Hidden smDown>
-          <Drawer
-            variant="permanent"
-            open
-            classes={{ paper: classes.drawerPaper }}
-          >
-            <DrawerLayout authUser={authUser} pathname={pathname} />
-          </Drawer>
-        </Hidden>
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          {children}
-        </main>
-      </div>
+      <Fragment>
+        <div className={classes.root} style={pathname === '/login' ? {filter: 'blur(10px)'} : {}}>
+          <AppBarLayout
+            handleDrawerToggle={this.handleDrawerToggle}
+            authUser={authUser}
+            users={users}
+          />
+          <Hidden mdUp>
+            <Drawer
+              open={this.state.drawerOpen}
+              classes={{ paper: classes.drawerPaper }}
+              onClose={this.handleDrawerToggle}
+            >
+              <DrawerLayout authUser={authUser} pathname={pathname} />
+            </Drawer>
+          </Hidden>
+          <Hidden smDown>
+            <Drawer
+              variant="permanent"
+              open
+              classes={{ paper: classes.drawerPaper }}
+            >
+              <DrawerLayout authUser={authUser} pathname={pathname} />
+            </Drawer>
+          </Hidden>
+          <main className={classes.content}>
+            <div className={classes.toolbar} />
+            {children}
+          </main>
+        </div>
+      </Fragment>
     );
   }
 }

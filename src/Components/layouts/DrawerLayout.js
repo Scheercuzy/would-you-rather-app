@@ -11,7 +11,7 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar,
   createdBy: {
     position: "absolute",
-    bottom: "15px"
+    bottom: "5vh"
   }
 });
 
