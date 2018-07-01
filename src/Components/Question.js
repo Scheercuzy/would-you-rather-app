@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 
 import { answerQuestions } from './store/actions/questions'
+import Error404 from './404'
 
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
@@ -31,10 +32,6 @@ const styles = theme => ({
     },
     author : {
         padding: '10px'
-    },
-    error404 : {
-        padding: '20px',
-        textAlign: 'center',
     }
 })
 
@@ -99,14 +96,7 @@ class Question extends Component {
         const { questionInfo, showAnswerInfo, currentUserChoice, invalidQid } = this.state
 
         if (invalidQid) {
-            return (
-                <Fragment>
-                    <Paper>
-                        <Typography variant='title' className={classes.error404}>404 Error</Typography>
-                        <Typography className={classes.error404}>This Question ID doesn't exist</Typography>
-                    </Paper>
-                </Fragment>
-            )
+            return <Error404 message404="This Question ID doesn't exist" />
         }
         
         return (

@@ -11,6 +11,7 @@ import Home from './Home'
 import LeaderBoard from './LeaderBoard'
 import CreatePoll from './CreatePoll'
 import Question from './Question'
+import Error404 from './404'
 
 import Layout from './layouts/index'
 import PrivateRoute from './utils/PrivateRoute'
@@ -46,7 +47,7 @@ class App extends Component {
             <PrivateRoute path="/leaderboard" authUser={authUser} component={LeaderBoard} />
             <PrivateRoute path="/createpoll" authUser={authUser} component={CreatePoll} />
             <PrivateRoute path="/question/:q" authUser={authUser} component={Question} />
-            <Route render={() => <h1>404</h1>}/>
+            <Route render={() =><Error404 message404="This page doesn't exist"/>} />
           </Switch>
           </Paper>
         </Layout>
