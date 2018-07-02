@@ -6,6 +6,7 @@ import { withStyles } from "@material-ui/core/styles";
 
 import DrawerLayout from "./DrawerLayout";
 import AppBarLayout from "./AppBarLayout";
+import SnackbarLayout from "./SnackbarLayout"
 
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
@@ -60,13 +61,9 @@ class Nav extends Component {
   }
 
   render() {
-    const { classes, authUser, users, children } = this.props;
+    const { classes, authUser, users, progress, children } = this.props;
     const { pathname } = this.props.history.location;
-
-    // if (this.props.location.pathname === '/login') {
-    //     return <div>{children}</div>
-    // }
-
+    
     return (
       <Fragment>
         <div className={classes.root} style={pathname === '/login' ? {filter: 'blur(10px)'} : {}}>
@@ -97,16 +94,18 @@ class Nav extends Component {
             <div className={classes.toolbar} />
             {children}
           </main>
+          <SnackbarLayout progress={progress} />
         </div>
       </Fragment>
     );
   }
 }
 
-function mapStateToProps({ authUser, users }) {
+function mapStateToProps({ authUser, users, progress }) {
   return {
     authUser,
-    users
+    users,
+    progress
   };
 }
 

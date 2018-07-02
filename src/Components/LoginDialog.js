@@ -85,7 +85,6 @@ class LoginDialog extends Component {
     const { users, authUser } = this.props;
     const userslist = Object.keys(users);
     const from = this.props.location.from;
-    console.log(this.props)
 
     if (this.state.close === true) {
       if (from !== undefined && authUser) {

@@ -3,7 +3,7 @@ import compose from "recompose/compose";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 
-import { answerQuestions } from "./store/actions/questions";
+import { handleAnswerQuestion } from "./store/actions/questions";
 import Error404 from "./404";
 
 import Paper from "@material-ui/core/Paper";
@@ -73,7 +73,7 @@ class Question extends Component {
   handleClickedQuestion(option) {
     const { authUser } = this.props;
     const { questionInfo } = this.state;
-    this.props.dispatch(answerQuestions(authUser, questionInfo.id, option));
+    this.props.dispatch(handleAnswerQuestion(authUser, questionInfo.id, option));
     this.setState(prevState => {
       return Object.assign(prevState, {
         showAnswerInfo: true,
