@@ -90,7 +90,7 @@ class LoginDialog extends Component {
       if (from !== undefined && authUser) {
         return <Redirect to={from} />;
       }
-      this.props.history.goBack()
+      this.props.history.goBack();
     }
 
     return (

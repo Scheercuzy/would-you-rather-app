@@ -73,7 +73,9 @@ class Question extends Component {
   handleClickedQuestion(option) {
     const { authUser } = this.props;
     const { questionInfo } = this.state;
-    this.props.dispatch(handleAnswerQuestion(authUser, questionInfo.id, option));
+    this.props.dispatch(
+      handleAnswerQuestion(authUser, questionInfo.id, option)
+    );
     this.setState(prevState => {
       return Object.assign(prevState, {
         showAnswerInfo: true,
