@@ -17,7 +17,9 @@ const styles = theme => ({
     padding: "20px",
     marginBottom: "20px"
   },
-  listPaper: {}
+  listPaper: {
+    margin: "5px"
+  }
 });
 
 class LeaderBoard extends Component {
