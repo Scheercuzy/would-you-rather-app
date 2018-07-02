@@ -34,11 +34,7 @@ function DrawerLayout(props) {
         >
           <Typography>LeaderBoard</Typography>
         </MenuItem>
-        <MenuItem
-          selected={pathname === "/createpoll"}
-          component={Link}
-          to="/createpoll"
-        >
+        <MenuItem selected={pathname === "/add"} component={Link} to="/add">
           <Typography>Create Poll</Typography>
         </MenuItem>
       </MenuList>

@@ -56,7 +56,7 @@ class App extends Component {
                 component={LeaderBoard}
               />
               <PrivateRoute
-                path="/createpoll"
+                path="/add"
                 authUser={authUser}
                 component={CreatePoll}
               />
