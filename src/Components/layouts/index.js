@@ -6,7 +6,7 @@ import { withStyles } from "@material-ui/core/styles";
 
 import DrawerLayout from "./DrawerLayout";
 import AppBarLayout from "./AppBarLayout";
-import SnackbarLayout from "./SnackbarLayout"
+import SnackbarLayout from "./SnackbarLayout";
 
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
@@ -31,7 +31,8 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar,
   content: {
     maxWidth: "100%",
-    width: "100vw"
+    width: "100vw",
+    minHeight: "100vh"
   }
 });
 
@@ -63,10 +64,13 @@ class Nav extends Component {
   render() {
     const { classes, authUser, users, progress, children } = this.props;
     const { pathname } = this.props.history.location;
-    
+
     return (
       <Fragment>
-        <div className={classes.root} style={pathname === '/login' ? {filter: 'blur(10px)'} : {}}>
+        <div
+          className={classes.root}
+          style={pathname === "/login" ? { filter: "blur(10px)" } : {}}
+        >
           <AppBarLayout
             handleDrawerToggle={this.handleDrawerToggle}
             authUser={authUser}

@@ -22,8 +22,8 @@ const styles = theme => ({
   root: {
     ...theme.mixins.gutters(),
     paddingTop: theme.spacing.unit * 2,
-    paddingBottom: "100%",
-    height: "100vh"
+    paddingBottom: theme.spacing.unit * 2,
+    height: "100%"
   }
 });
 
@@ -38,7 +38,10 @@ class App extends Component {
       <BrowserRouter>
         <Layout>
           <CssBaseline />
-          <Paper className={classes.root} style={{backgroundColor: '#F2F2F2'}}>
+          <Paper
+            className={classes.root}
+            style={{ backgroundColor: "#F2F2F2" }}
+          >
             <Switch>
               <Route path="/login" component={LoginDialog} />
               <PrivateRoute
