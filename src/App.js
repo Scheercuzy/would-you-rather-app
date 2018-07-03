@@ -5,16 +5,16 @@ import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
-import LoginDialog from "./components/LoginDialog";
-import { handleInitialData } from "./components/store/actions/shared";
-import Home from "./components/Home";
-import LeaderBoard from "./components/LeaderBoard";
-import CreatePoll from "./components/CreatePoll";
-import Question from "./components/Question";
-import Error404 from "./components/Error404";
+import LoginDialog from "./Components/LoginDialog";
+import { handleInitialData } from "./Components/store/actions/shared";
+import Home from "./Components/Home";
+import LeaderBoard from "./Components/LeaderBoard";
+import CreatePoll from "./Components/CreatePoll";
+import Question from "./Components/Question";
+import Error404 from "./Components/Error404";
 
-import Layout from "./components/layouts/index";
-import PrivateRoute from "./components/utils/PrivateRoute";
+import Layout from "./Components/layouts/index";
+import PrivateRoute from "./Components/utils/PrivateRoute";
 
 import Paper from "@material-ui/core/Paper";
 
