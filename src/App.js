@@ -11,7 +11,7 @@ import Home from "./components/Home";
 import LeaderBoard from "./components/LeaderBoard";
 import CreatePoll from "./components/CreatePoll";
 import Question from "./components/Question";
-import Error404 from "./components/404";
+import Error404 from "./components/Error404";
 
 import Layout from "./components/layouts/index";
 import PrivateRoute from "./components/utils/PrivateRoute";

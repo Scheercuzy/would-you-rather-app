@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 
 import { handleAnswerQuestion } from "./store/actions/questions";
-import Error404 from "./404";
+import Error404 from "./Error404";
 
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
