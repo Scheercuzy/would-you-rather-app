@@ -29,11 +29,9 @@ function TabContainer(props) {
   const { displayquestions, classes } = props;
 
   const mergeOptions = question =>
-    "Would you rather " +
-    question.optionOne.text +
-    " or " +
-    question.optionTwo.text +
-    "?";
+    `Would you rather ${question.optionOne.text} or ${
+      question.optionTwo.text
+    }?`;
 
   if (displayquestions.length === 0) {
     return (
