@@ -1,4 +1,4 @@
-export const SET_AUTH_USER = "SET_AUTH_USER";
+import { SET_AUTH_USER } from "./actionTypes";
 
 export function setAuthUser(id) {
   return {

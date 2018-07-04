@@ -1,9 +1,11 @@
 import { _saveQuestionAnswer, _saveQuestion } from "../../utils/_DATA";
-import { PROGRESS_SAVING, PROGRESS_SAVED } from "./progress";
-
-export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
-export const ANSWER_QUESTION = "ANSWER_QUESTION";
-export const ADD_QUESTION = "ADD_QUESTION";
+import {
+  PROGRESS_SAVING,
+  PROGRESS_SAVED,
+  RECEIVE_QUESTIONS,
+  ANSWER_QUESTION,
+  ADD_QUESTION
+} from "./actionTypes";
 
 export function receiveQuestions(questions) {
   return {

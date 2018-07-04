@@ -1,4 +1,4 @@
-import { PROGRESS_SAVING, PROGRESS_SAVED } from "../actions/progress";
+import { PROGRESS_SAVING, PROGRESS_SAVED } from "../actions/actionTypes";
 
 export default function progress(
   state = { saving: false, loading: false },
