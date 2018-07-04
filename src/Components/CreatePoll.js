@@ -29,8 +29,8 @@ const styles = theme => ({
 
 class CreatePoll extends Component {
   state = {
-    optionOne: null,
-    optionTwo: null,
+    optionOne: "",
+    optionTwo: "",
     submitted: false
   };
 
@@ -43,13 +43,10 @@ class CreatePoll extends Component {
   handleSubmitPoll = () => {
     const { optionOne, optionTwo } = this.state;
     const { authUser } = this.props;
-    this.props.dispatch(
-      handleAddQuestion({
-        author: authUser,
-        optionOneText: optionOne,
-        optionTwoText: optionTwo
-      })
-    );
+    if (optionOne === "" || optionTwo === "") {
+      return;
+    }
+    this.props.onSubmit(authUser, optionOne, optionTwo);
     this.setState({ submitted: true });
   };
 
@@ -73,21 +70,25 @@ class CreatePoll extends Component {
               Would You Rather
             </Typography>
             <TextField
+              error={this.state.optionOne === ""}
               label="Question 1"
               className={classes.textField}
               margin="normal"
               helperText=""
               fullWidth
+              value={this.state.optionOne}
               onChange={e => {
                 this.handleChange("optionOne", e);
               }}
             />
             <TextField
+              error={this.state.optionTwo === ""}
               label="Question 2"
               className={classes.textField}
               margin="normal"
               helperText=""
               fullWidth
+              value={this.state.optionTwo}
               onChange={e => {
                 this.handleChange("optionTwo", e);
               }}
@@ -116,7 +117,23 @@ function mapStateToProps({ authUser }) {
   };
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    onSubmit: (authUser, optionOne, optionTwo) =>
+      dispatch(
+        handleAddQuestion({
+          author: authUser,
+          optionOneText: optionOne,
+          optionTwoText: optionTwo
+        })
+      )
+  };
+}
+
 export default compose(
   withStyles(styles),
-  connect(mapStateToProps)
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
 )(CreatePoll);
