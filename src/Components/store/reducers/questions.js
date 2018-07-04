@@ -16,7 +16,7 @@ export default function questions(state = [], action) {
         ...state,
         [action.question.id]: action.question
       };
-    case ANSWER_QUESTION:
+    case ANSWER_QUESTION: {
       const { authUser, qid, answer } = action;
       const currentQuestion = state[qid];
       return {
@@ -47,6 +47,7 @@ export default function questions(state = [], action) {
           }
         }
       };
+    }
     default:
       return state;
   }
