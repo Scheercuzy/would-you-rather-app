@@ -3,9 +3,8 @@ import React, { Fragment } from "react";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 
-const Error404 = props => (
+const Error404 = ({ message404 }) => (
   <Fragment>
-    {console.log(props)}
     <Paper>
       <Typography
         variant="title"
@@ -14,7 +13,7 @@ const Error404 = props => (
         404
       </Typography>
       <Typography style={{ padding: "20px", textAlign: "center" }}>
-        {props.message404}
+        {message404}
       </Typography>
     </Paper>
   </Fragment>
