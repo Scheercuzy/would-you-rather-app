@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import compose from "recompose/compose";
@@ -22,43 +22,35 @@ const styles = theme => ({
   }
 });
 
-class LeaderBoard extends Component {
-  state = {};
-  render() {
-    const { classes, usersArray } = this.props;
-    return (
-      <Fragment>
-        <Paper>
-          <Typography variant="headline" className={classes.title}>
-            LeaderBoard
-          </Typography>
-        </Paper>
+const LeaderBoard = ({ classes, usersArray }) => {
+  return (
+    <Fragment>
+      <Paper>
+        <Typography variant="headline" className={classes.title}>
+          LeaderBoard
+        </Typography>
+      </Paper>
 
-        {usersArray.map(user => (
-          <Paper className={classes.listPaper} key={user.username}>
-            <List>
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar alt={user.username} src={user.avatarURL} />
-                </ListItemAvatar>
-                <ListItemText
-                  primary={user.username}
-                  secondary={
-                    "has answered " +
-                    user.totalQuestions +
-                    " questions and is the author of " +
-                    user.totalAnswers +
-                    " questions"
-                  }
-                />
-              </ListItem>
-            </List>
-          </Paper>
-        ))}
-      </Fragment>
-    );
-  }
-}
+      {usersArray.map(
+        ({ username, avatarURL, totalQuestions, totalAnswers }) => {
+          const boardInfo = `has answered ${totalQuestions} questions and is the author of ${totalAnswers} questions`;
+          return (
+            <Paper className={classes.listPaper} key={username}>
+              <List>
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar alt={username} src={avatarURL} />
+                  </ListItemAvatar>
+                  <ListItemText primary={username} secondary={boardInfo} />
+                </ListItem>
+              </List>
+            </Paper>
+          );
+        }
+      )}
+    </Fragment>
+  );
+};
 
 function mapStateToProps({ users, questions }) {
   const usersArray = Object.keys(users)
