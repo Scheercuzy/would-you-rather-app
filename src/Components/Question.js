@@ -95,7 +95,11 @@ class Question extends Component {
       questionInfo.optionOne.votes.length + questionInfo.optionTwo.votes.length;
     const percentage =
       (questionInfo[currentUserChoice].votes.length / totalVotes) * 100;
-    return percentage % 1 === 0 ? percentage : percentage.toFixed(2);
+    return totalVotes !== 0
+      ? percentage % 1 === 0
+        ? percentage
+        : percentage.toFixed(2)
+      : 0;
   }
 
   render() {
